@@ -1,4 +1,4 @@
-# Conquête des Territoires
+Territory Conquest Game
 
 ## Description
 
