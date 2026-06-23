@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Territory Conquest — A futuristic turn-based strategy game on an 8x8 grid.">
+    <title>Territory Conquest</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="start-screen" class="screen active">
+        <div class="start-content">
+            <h1 class="game-title">TERRITORY<br><span>CONQUEST</span></h1>
+            <button id="btn-start" class="neon-btn">INITIALIZE BATTLE</button>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+
+        <header id="hud">
+            <div class="hud-block" id="hud-player">
+                <span class="hud-label">PLAYER</span>
+                <span class="hud-value" id="hud-player-territory">0</span>
+                <span class="hud-sub">ZONES</span>
+            </div>
+            <div class="hud-center">
+                <span id="hud-turn" class="hud-turn">TURN 1</span>
+                <span id="hud-phase" class="hud-phase">PLACEMENT</span>
+            </div>
+            <div class="hud-block" id="hud-ai">
+                <span class="hud-label">AI ENEMY</span>
+                <span class="hud-value" id="hud-ai-territory">0</span>
+                <span class="hud-sub">ZONES</span>
+            </div>
+        </header>
+
+        <main id="main-area">
+
+            <aside id="panel-left">
+
+                <div id="placement-panel" class="panel-section">
+                    <h2 class="panel-title">DEPLOY UNITS</h2>
+                    <p class="panel-hint">Select a unit type, then click a valid tile.</p>
+
+                    <div class="unit-buttons">
+                        <button class="unit-btn" data-type="soldier">
+                            <span class="unit-icon">⚔️</span>
+                            <span class="unit-name">Soldier</span>
+                            <span class="unit-remaining">2/2</span>
+                            <span class="unit-stats">STR 6 · MOV 1</span>
+                        </button>
+                        <button class="unit-btn" data-type="cavalry">
+                            <span class="unit-icon">🐎</span>
+                            <span class="unit-name">Cavalry</span>
+                            <span class="unit-remaining">2/2</span>
+                            <span class="unit-stats">STR 4 · MOV 2</span>
+                        </button>
+                        <button class="unit-btn" data-type="tank">
+                            <span class="unit-icon">🛡️</span>
+                            <span class="unit-name">Tank</span>
+                            <span class="unit-remaining">1/1</span>
+                            <span class="unit-stats">STR 9 · MOV 1</span>
+                        </button>
+                    </div>
+
+                    <p class="units-remaining">Units left: <span id="units-remaining-count">5</span></p>
+                </div>
+
+                <div id="action-panel" class="panel-section hidden">
+                    <h2 class="panel-title">ACTIONS</h2>
+                    <button id="btn-move" class="action-btn" disabled>MOVE</button>
+                    <button id="btn-attack" class="action-btn" disabled>ATTACK</button>
+                    <button id="btn-defend" class="action-btn" disabled>DEFEND</button>
+                    <button id="btn-end-turn" class="action-btn accent">END TURN</button>
+                </div>
+
+                <div id="selected-info" class="panel-section hidden">
+                    <h2 class="panel-title">UNIT INFO</h2>
+                    <div id="selected-unit-details"></div>
+                </div>
+            </aside>
+
+            <div id="grid-container">
+                <div id="grid"></div>
+            </div>
+
+            <aside id="panel-right">
+                <h2 class="panel-title">BATTLE LOG</h2>
+                <div id="battle-log"></div>
+            </aside>
+        </main>
+    </div>
+
+    <div id="gameover-screen" class="screen">
+        <div class="gameover-content">
+            <h1 id="gameover-title" class="game-title">VICTORY</h1>
+            <p id="gameover-message" class="subtitle">You dominated the battlefield.</p>
+            <div id="gameover-stats" class="gameover-stats"></div>
+            <button id="btn-restart" class="neon-btn">REINITIALIZE</button>
+        </div>
+    </div>
+
+    <div id="dice-overlay" class="overlay hidden">
+        <div class="combat-popup">
+            <h2 id="dice-title" class="combat-popup-title">⚡ COMBAT REPORT ⚡</h2>
+
+            <div id="combat-roll-area" class="combat-roll-area">
+                <div id="dice-box-attacker" class="dice-box">
+                    <span id="dice-label-attacker" class="dice-label">ATTACKER</span>
+                    <span class="dice-value" id="dice-attacker">?</span>
+                </div>
+                <span class="dice-vs">VS</span>
+                <div id="dice-box-defender" class="dice-box">
+                    <span id="dice-label-defender" class="dice-label">DEFENDER</span>
+                    <span class="dice-value" id="dice-defender">?</span>
+                </div>
+            </div>
+
+            <div id="combat-details" class="combat-details hidden"></div>
+
+            <button id="btn-combat-continue" class="neon-btn combat-continue-btn hidden">CONTINUE</button>
+        </div>
+    </div>
+
+    <div id="tooltip" class="tooltip hidden">
+        <div id="tooltip-content"></div>
+    </div>
+
+    <script src="js/engine.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>
